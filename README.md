@@ -33,8 +33,8 @@ Replace the following placeholders with your own values (in `dbt/profiles.yml`, 
 
 | Placeholder                     | Description                                                                                    |
 |---------------------------------|------------------------------------------------------------------------------------------------|
-| `<bronze_catalog_name>`         | Your Databricks Unity Catalog name for bronze catalog                                          |
-| `<silver_catalog_name>`         | Your Databricks Unity Catalog name for silver catalog                                            |
+| `<bronze_catalog_name>`         | Your Databricks Unity Catalog name for bronze catalog, should have `_dev` postfix              |
+| `<silver_catalog_name>`         | Your Databricks Unity Catalog name for silver catalog, should have `_dev` postfix              |
 | `<dev_workspace_host>`          | Your dev Databricks workspace host, e.g. `dbc-XYZabc12-0000.cloud.databricks.com`              |
 | `<dev_workspace_name>`          | Name of your dev databricks workspace (part of `dev_workspace_host`), e.g. `dbc-XYZabc12-0000` |
 | `<dev_sql_warehouse_http_path>` | HTTP path of your SQL warehouse (e.g. `/sql/1.0/warehouses/xxx`)                               |
@@ -83,7 +83,7 @@ Search the repo for these occurrences and replace them before running dbt.
 
 3. **Copy data from `increment_3` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3`  and run `dbt run --select bronze__transactions+`. You should see a **new column:** `paid` in table and view.
 
-4. **Copy data from `increment_4` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3` and run `dbt run --select bronze__transactions`. Schema should not be modified, but new rows have `null` values in `date` column.
+4. **Copy data from `increment_4` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_4` and run `dbt run --select bronze__transactions+`. Schema should not be modified, but new rows have `null` values in `date` column.
 
 This sequence demonstrates how Databricks streaming tables handle adding and removing columns across increments.
 
