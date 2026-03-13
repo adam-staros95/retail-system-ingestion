@@ -57,7 +57,7 @@ Search the repo for these occurrences and replace them before running dbt.
 1. Copy the batch user data to your S3 bucket:
    - Copy `users_1.json` and `users_2.json` from `sample_data/batch/users/` to `"s3://<landing_bucket_dev>/retail_system/batch/users/`.
 
-2. Run `dbt run bronze__users+`. You should see a table `<bronze_catalog_name>.retail_system.users` and view `<silver_catalog_name>.retail_system.users` with 3 columns: `id`, `firstname`, and `lastname`, with 10,000 rows in total.
+2. Run `dbt run bronze__users+`. You should see a table `<bronze_catalog_name>.retail_system.users` and view `<silver_catalog_name>.retail_system.users` with 3 columns: `id`, `first_name`, and `last_name`, with 10,000 rows in total.
 
 ---
 
@@ -76,13 +76,13 @@ Search the repo for these occurrences and replace them before running dbt.
 
 ### Instructions (streaming table / schema evolution)
 
-1. **Copy data from `increment_1` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_1` and run `dbt run`. You should see a table with **2 columns:** `id` and `amount`.
+1. **Copy data from `increment_1` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_1` and run `dbt run`. You should see a table `<bronze_catalog_name>.retail_system.transactions` and view `<silver_catalog_name>.retail_system.transactions` with **2 columns:** `id` and `amount`.
 
-2. **Copy data from `increment_2` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_2`  and run `dbt run` again. You should see a **new column:** `date` (table: `id`, `amount`, `date`).
+2. **Copy data from `increment_2` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_2`  and run `dbt run` again. You should see a **new column:** `date` in table and view.
 
-3. **Copy data from `increment_3` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3`  and run `dbt run`. You should see a **new column:** `paid` (table: `id`, `amount`, `date`, `paid`).
+3. **Copy data from `increment_3` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3`  and run `dbt run`. You should see a **new column:** `paid` in table and view.
 
-4. **Copy data from `increment_4` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3` and run `dbt run`. The `date` column now `null`.
+4. **Copy data from `increment_4` to S3** `s3://<landing_bucket_dev>/retail_system/streaming/transactions/increment_3` and run `dbt run`. Schema should not be modified, but new rows have `null` values in `date` column.
 
 This sequence demonstrates how Databricks streaming tables handle adding and removing columns across increments.
 
