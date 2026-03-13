@@ -1,0 +1,34 @@
+name: "retail_system_ingestion"
+version: "1.0.0"
+config-version: 2
+
+profile: "retail_system_ingestion"
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  +auto_liquid_cluster: true
+  +schema: retail_system
+  bronze:
+    +tags:
+      - "bronze"
+    batch:
+      +materialized: table
+    streaming:
+      +materialized: streaming_table
+      +schedule:
+        { "cron": '0 0 9-17 * * ?', "time_zone_value": "Europe/Warsaw" }
+  silver:
+    +materialized: view
+    +tags:
+      - "silver"
+
+vars:
+  dev_workspace_name: "<dev_workspace_name>"
+  dev_landing_data_s3_path: "s3://<landing_bucket_dev>/retail_system"

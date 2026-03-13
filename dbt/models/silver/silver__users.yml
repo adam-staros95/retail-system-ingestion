@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: silver__users
+    description: Users data.
+    access: public
+    columns:
+      - name: id
+        description: Unique user identifier.
+      - name: first_name
+        description: User first name.
+      - name: last_name
+        description: User last name.

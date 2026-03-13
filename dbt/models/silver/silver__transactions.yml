@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: silver__transactions
+    description: Transactions data.
+    access: public
+    columns:
+      - name: id
+        description: Unique transaction identifier.
+      - name: amount
+        description: Transaction amount.

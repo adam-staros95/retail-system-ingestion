@@ -1,0 +1,11 @@
+retail_system_ingestion:
+  outputs:
+    dev:
+      catalog: <bronze_catalog_name>
+      host: <dev_workspace_host>
+      http_path: <dev_sql_warehouse_http_path>
+      schema: _tmp
+      threads: 10
+      auth_type: oauth # You can use other method or authentication, https://docs.getdbt.com/docs/fusion/connect-data-platform-fusion/databricks-setup#supported-authentication-types
+      type: databricks
+  target: dev
