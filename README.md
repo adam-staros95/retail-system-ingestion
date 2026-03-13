@@ -1,11 +1,16 @@
 # Retail System Ingestion – Sample Data
 
-Sample project for demonstrating batch and streaming ingestion in Databricks. Repo created for Medium post `Data ingestion in Databricks-Keep It Simple Stupid`.
+Sample project for demonstrating simple data ingestion in Databricks. Repo created for Medium post `Data ingestion in Databricks-Keep It Simple Stupid`.
 
 **Note:** This sample assumes only a **dev environment** is supported.
 
 ---
 
+## Prerequisites
+- Databricks workspace with Unity Catalog
+- Write access to bronze and silver catalogs
+- Write access to S3 landing data bucket
+- Read access to landing bucket External Location
 ## Setup
 
 ### Virtual environment and dependencies
@@ -35,7 +40,7 @@ Replace the following placeholders with your own values (in `dbt/profiles.yml`, 
 
 Search the repo for these occurrences and replace them before running dbt.
 
-Note: `s3://<landing_bucket_dev>/retail_system` must be registered Unity Catalog External Location you have access to!
+**Note: `s3://<landing_bucket_dev>/retail_system` must be registered Unity Catalog External Location you have read access to!**
 
 ---
 
@@ -51,7 +56,7 @@ Note: `s3://<landing_bucket_dev>/retail_system` must be registered Unity Catalog
 1. Copy the batch user data to your S3 bucket:
    - Copy `users_1.json` and `users_2.json` from `sample_data/batch/users/` to `"s3://<landing_bucket_dev>/retail_system/batch/users/`.
 
-2. Run `dbt run`. You should see a table with 3 columns: `id`, `firstname`, and `lastname`, with 10,000 rows in total.
+2. Run `dbt run bronze__users+`. You should see a table `<bronze_catalog_name>.retail_system.users` and view `<silver_catalog_name>.retail_system.users` with 3 columns: `id`, `firstname`, and `lastname`, with 10,000 rows in total.
 
 ---
 
