@@ -1,6 +1,8 @@
 # Retail System Ingestion – Sample Data
 
-Sample project for demonstrating simple data ingestion in Databricks. Repo created for Medium post `Data ingestion in Databricks-Keep It Simple Stupid`.
+Sample project for demonstrating simple data ingestion in Databricks. Repo created for Medium post [Data ingestion in Databricks – Keep It Simple](https://medium.com/@staros.adam/data-ingestion-in-databricks-keep-it-simple-stupid-3e3ec8179a11)
+
+
 
 **Note:** This sample assumes only a **dev environment** is supported.
 
