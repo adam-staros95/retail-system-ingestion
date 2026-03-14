@@ -33,8 +33,9 @@ Replace the following placeholders with your own values (in `dbt/profiles.yml`, 
 
 | Placeholder                     | Description                                                                                    |
 |---------------------------------|------------------------------------------------------------------------------------------------|
-| `<bronze_catalog_name>`         | Your Databricks Unity Catalog name for bronze catalog, should have `_dev` postfix              |
-| `<silver_catalog_name>`         | Your Databricks Unity Catalog name for silver catalog, should have `_dev` postfix              |
+| `<bronze_catalog_name>`         | Name of your bronze catalog, must end with `_dev` postfix, eg. `bronze_dev`                    |
+| `<bronze_catalog_prefix>`       | Name of your bronze catalog, without `_dev` postfix, eg. `bronze_`                             |
+| `<silver_catalog_prefix>`       | Name of your silver catalog, without `_dev` postfix, eg. `silver_`                             |
 | `<dev_workspace_host>`          | Your dev Databricks workspace host, e.g. `dbc-XYZabc12-0000.cloud.databricks.com`              |
 | `<dev_workspace_name>`          | Name of your dev databricks workspace (part of `dev_workspace_host`), e.g. `dbc-XYZabc12-0000` |
 | `<dev_sql_warehouse_http_path>` | HTTP path of your SQL warehouse (e.g. `/sql/1.0/warehouses/xxx`)                               |

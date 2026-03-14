@@ -2,7 +2,7 @@
 
 {{
     config(
-        catalog='<silver_catalog_name>' ~ env,
+        catalog='<silver_catalog_prefix>' ~ env,
         alias='transactions',
     )
 }}

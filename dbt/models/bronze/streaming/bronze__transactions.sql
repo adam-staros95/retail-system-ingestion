@@ -3,7 +3,7 @@
 
 {{
     config(
-        catalog='<bronze_catalog_name>' ~ env,
+        catalog='<bronze_catalog_prefix>' ~ env,
         alias='transactions',
     )
 }}

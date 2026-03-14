@@ -13,21 +13,22 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  +auto_liquid_cluster: true
-  +schema: retail_system
-  bronze:
-    +tags:
-      - "bronze"
-    batch:
-      +materialized: table
-    streaming:
-      +materialized: streaming_table
-      +schedule:
-        { "cron": '0 0 9-17 * * ?', "time_zone_value": "Europe/Warsaw" }
-  silver:
-    +materialized: view
-    +tags:
-      - "silver"
+  retail_system_ingestion:
+    +auto_liquid_cluster: true
+    +schema: retail_system
+    bronze:
+      +tags:
+        - "bronze"
+      batch:
+        +materialized: table
+      streaming:
+        +materialized: streaming_table
+        +schedule:
+          { "cron": '0 0 9-17 ? * MON-FRI', "time_zone_value": "Europe/Warsaw" }
+    silver:
+      +materialized: view
+      +tags:
+        - "silver"
 
 vars:
   dev_workspace_name: "<dev_workspace_name>"
